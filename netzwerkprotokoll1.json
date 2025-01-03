@@ -1,0 +1,317 @@
+[
+  {
+    "_commentary": "Client connection attempt",
+    "action": "welcomeServer",
+    "body": {
+      "protocol": "exampleProtocol"
+    }
+  },
+  {
+    "_commentary": "Connection successful",
+    "action": "welcomeUser",
+    "body": {
+      "protocol": "exampleProtocol"
+    }
+  },
+  {
+    "_commentary": "Client identification",
+    "action": "assignUserID",
+    "body": {
+      "player_data": {
+        "user_id": "playerUID"
+      }
+    }
+  },
+  {
+    "_commentary": "Loss of connection",
+    "action": "connectionStatus",
+    "body": {
+    }
+  },
+
+  {
+    "_commentary": "Send a public message",
+    "action": "sendMessage",
+    "body": {
+      "privateMessage": false,
+      "message": "exampleMessage",
+      "receiver": "allPlayers"
+    }
+  },
+  {
+    "_commentary": "Send a private message",
+    "action": "sendMessage",
+    "body": {
+      "privateMessage": true,
+      "message": "exampleMessage",
+      "receiver": "playerUID"
+    }
+  },
+  {
+    "_commentary": "Receive a private message",
+    "action": "receiveMessage",
+    "body": {
+      "message": "exampleMessage",
+      "sender": "playerUID"
+    }
+  },
+  {
+    "_commentary": "Error when messaging",
+    "action": "faultyMessage",
+    "body": {
+      "exception": "Error, check that everything is correct or try again."
+    }
+  },
+
+  {
+    "_comment": "Name and character setting",
+    "action": "playerSettings",
+    "body": {
+      "player_name": "playerName",
+      "chosen_robot": "robotUID",
+      "protocol": "exampleProtocol"
+    }
+  },
+  {
+    "_comment": "Player added",
+    "action": "newPlayer",
+    "body": {
+      "player_id": "playerUID",
+      "player_name": "playerName",
+      "chosen_robot": "robotUID",
+      "ready_to_play": true,
+      "energy_cubes": 5
+    }
+  },
+  {
+    "_comment": "Selection of the board",
+    "action": "boardSelection",
+    "body": {
+      "availableBoards": ["Dizzy Highway", "Risky Crossing", "High Octane",
+      "Sprint Cramp", "Corridor Blitz", "Fractionation", "Burnout",
+      "Lost Bearings", "Passing Lane", "Twister", "Dodge This",
+      "Chop Shop Challenge", "Undertow", "Heavy Merge Area", "Death Trap",
+      "Pilgrimage", "Gear Stripper", "Extra Crispy", "Burn Run"]
+    }
+  },
+  {
+    "_comment": "Selected Board",
+    "action": "chosenBoard",
+    "body": {
+      "board": "boardUID"
+    }
+  },
+
+  {
+    "_comment": "Game settings",
+    "action": "startGame",
+    "body": {
+    }
+  },
+  {
+    "_comment": "Phase settings",
+    "action": "setPhase",
+    "body": {
+      "current_phase": "phaseNumber"
+    }
+  },
+  {
+    "_comment": "Defining starting position",
+    "action": "startingPosition",
+    "body": {
+      "x": 0,
+      "y": 0,
+      "look_direction": ["North", "South", "East", "West"]
+    }
+  },
+  {
+    "_comment": "Convert to taken position",
+    "action": "positionTaken",
+    "body": {
+      "player_id": "playerUID",
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "_comment": "Shuffle the deck",
+    "action": "shuffleCards",
+    "body": {
+      "player_id": "playerUID"
+    }
+  },
+  {
+    "_comment": "Programming deck",
+    "action": "programmingDeck",
+    "body": {
+      "start_amount": 20,
+      "_comment": "Checks if its empty (true: fill from discard pile)",
+      "is_empty": false
+    }
+  },
+  {
+    "_comment": "Player draws their hand (9 cards)",
+    "action": "drawHand",
+    "body": {
+      "players_hand": "cardNames",
+      "cards_in_hand": "numberOfCards"
+    }
+  },
+  {
+    "_comment": "Player purchases a card",
+    "action": "purchasedCard",
+    "body": {
+      "player_id": "playerUID",
+      "purchased_card": "cardName"
+    }
+  },
+  {
+    "_comment": "Player selects five cards",
+    "action": "selectedCards",
+    "body": {
+      "selected_cards": ["cardNames"],
+      "registered_cards": "card_order"
+    }
+  },
+  {
+    "_comment": "Confirm selected cards",
+    "action": "selectionConfirmed",
+    "body": {
+      "player_id": "playerUID",
+      "selection_ended": true
+    }
+  },
+  {
+    "_comment": "30s Timer starts",
+    "action": "startTimer",
+    "body": {
+    }
+  },
+  {
+    "_comment": "30s Timer ends",
+    "action": "endOfTime",
+    "body": {
+      "late_players" : ["playerUID"]
+    }
+  },
+  {
+    "_comment": "Player's new hand",
+    "action": "newHand",
+    "body": {
+      "register_amount": 5,
+      "new_hand": ["cardNames"]
+    }
+  },
+  {
+    "_comment": "Late player's new hand",
+    "action": "lateNewHand",
+    "body": {
+      "register_amount": 5,
+      "random_hand": ["cardNames"]
+    }
+  },
+  {
+    "_comment": "Special card effects",
+    "action": "specialCards",
+    "body": {
+      "special_card": "cardName",
+      "card_effects": "applySpecialEffects"
+    }
+  },
+  {
+    "_comment": "Discard rest of the hand cards",
+    "action": "discardPile",
+    "body": {
+      "player_id": "playerUID",
+      "_comment": "5 cards go to register, rest to discard",
+      "discarded_amount": ["notInRegister"]
+    }
+  },
+  {
+    "_comment": "Player's current cards",
+    "action": "currentDeck",
+    "body": {
+      "active_deck": [{
+          "_comment": "One block for each player",
+          "player_id": "playerUID",
+          "card_selected": "cardName"
+      }]
+    }
+  },
+  {
+    "_comment": "Determine current player",
+    "action": "priorityPlayer",
+    "body": {
+      "player_id": "playerUID",
+      "robot": {
+        "robot_id": "robotUID"
+      }
+    }
+  },
+  {
+    "_comment": "Card gets played",
+    "action": "playCard",
+    "body": {
+      "player_id": "playerUID",
+      "card_in_register": 1,
+      "played_card": "cardName",
+      "apply_effect": "applyEffect"
+    }
+  },
+  {
+    "_comment": "Discard card to played pile",
+    "action": "playedPile",
+    "body": {
+      "discarded_card": ["cardName"]
+    }
+  },
+  {
+    "_comment": "Reposition after movement card",
+    "action": "playerMove",
+    "body": {
+      "player_id": "playerUID",
+      "to_x": "xCoordinate",
+      "to_y": "yCoordinate"
+    }
+  },
+  {
+    "_comment": "Setting to look in a certain direction",
+    "action": "lookDirection",
+    "body": {
+      "player_id": "playerUID",
+      "_comment": "In our example using the -> arrow",
+      "direction": "clockwise"
+    }
+  },
+  {
+    "_comment": "Handling Reboot",
+    "action": "rebootTile",
+    "body": {
+      "player_id": "playerUID",
+      "reboot_direction": "direction"
+    }
+  },
+  {
+    "_comment": "Check if tile is a checkpoint",
+    "action": "checkPointReached",
+    "body": {
+      "player_id": "playerUID",
+      "checkpoint_reached": true
+    }
+  },
+  {
+    "_comment": "Determine a winner",
+    "action": "gameWinner",
+    "body": {
+      "player_id": "playerUID",
+      "number_of_checkpoints": "amountOfCheckpoints",
+      "all_reached": true
+    }
+  },
+  {
+    "_comment": "Game has ended",
+    "action": "endGame",
+    "body": {
+    }
+  }
+]
